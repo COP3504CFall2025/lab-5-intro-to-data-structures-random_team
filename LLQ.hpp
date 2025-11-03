@@ -12,12 +12,12 @@ private:
 public:
     // Constructor
     LLQ(){
-        list.Clear();
+        list.clear();
     };
 
     // Insertion
     void enqueue(const T& item) override{
-        list.AddTail(item);
+        list.addTail(item);
     };
 
     // Deletion
@@ -26,7 +26,7 @@ public:
             throw std::runtime_error("Empty Queue");
         }
         T front = list.getHead()->data;
-        list.RemoveHead();
+        list.removeHead();
         return front;
     };
 
@@ -48,7 +48,7 @@ public:
     };
 
     void printReverse(){
-        list.PrintReverse();
+        list.printReverse();
     };
 
 

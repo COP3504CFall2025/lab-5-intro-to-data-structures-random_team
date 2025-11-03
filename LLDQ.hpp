@@ -16,15 +16,15 @@ private:
 public:
     // Constructor
     LLDQ(){
-        list.Clear();
+        list.clear();
     };
 
     // Core Insertion Operations
     void pushFront(const T& item) override{
-        list.AddHead(item);
+        list.addHead(item);
     };
     void pushBack(const T& item) override{
-        list.AddTail(item);
+        list.addTail(item);
     };
 
     // Core Removal Operations
@@ -34,7 +34,7 @@ public:
             throw std::runtime_error("Empty Dequeue");
         }
         T front = list.getHead()->data;
-        list.RemoveHead();
+        list.removeHead();
         return front;
         
     };
@@ -44,7 +44,7 @@ public:
                 throw std::runtime_error("Empty Dequeue");
         }
         T back = list.getTail()->data;
-        list.RemoveTail();
+        list.removeTail();
         return back;
         
         
@@ -79,7 +79,7 @@ public:
     };
 
     void printReverse(){
-        list.PrintReverse();
+        list.printReverse();
     };
 };
 

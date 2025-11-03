@@ -12,12 +12,12 @@ private:
 public:
     // Constructor
     LLS(){
-        list.Clear();
+        list.clear();
     };
 
     // Insertion
     void push(const T& item) override{
-        list.AddHead(item);
+        list.addHead(item);
     };
 
     // Deletion
@@ -26,7 +26,7 @@ public:
                 throw std::runtime_error("Empty Stack");
         }
         T front = list.getHead()->data;
-        list.RemoveHead();
+        list.removeHead();
         return front;
     };
 
@@ -48,6 +48,6 @@ public:
     };
 
     void printReverse(){
-        list.PrintReverse();
+        list.printReverse();
     };
 };
