@@ -127,9 +127,8 @@ public:
         delete[] array_;
         array_ = popped;
         --curr_size_;
-        if(curr_size_>=capacity_){
+        if(curr_size_*4>=capacity_)
             capacity_/=2;
-        }
         return first;
     };
 
