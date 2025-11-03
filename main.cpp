@@ -19,22 +19,13 @@
 */
 
 int main() {
-    LLS<int> test;
+    ABS<int> test;
+    test.push(1);
     test.push(2);
-    test.push(3);
-    test.push(4);
-    test.printForward();
-    test.pop();
-    std::cout<<std::endl;
-    std::cout<<test.peek() << std::endl;
-    std::cout<<std::endl;
-    test.printForward();
     test.pop();
     test.pop();
     test.pop();
-    test.push(5);
-    std::cout<<std::endl;
-    test.printForward();
+    
     
 
     return 0;
