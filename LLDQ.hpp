@@ -16,7 +16,7 @@ private:
 public:
     // Constructor
     LLDQ(){
-        list.clear();
+        list.Clear();
     };
 
     // Core Insertion Operations
@@ -29,22 +29,44 @@ public:
 
     // Core Removal Operations
     T popFront() override{
-        T front = list.getHead()->data;
-        list.RemoveHead();
-        return front;
+        try{
+            if(list.getCount() == 0){
+                throw std::runtime_error();
+            }
+            T front = list.getHead()->data;
+            list.RemoveHead();
+            return front;
+        }
     };
     T popBack() override{
-        T back = list.getTail()->data;
-        list.RemoveTail();
-        return back;
+        try{
+            if(list.getCount() == 0){
+                throw std::runtime_error();
+            }
+            T back = list.getTail()->data;
+            list.RemoveTail();
+            return back;
+        }
+        
     };
 
     // Element Accessors
     const T& front() const override{
-        return list.getHead()->data;
+        try{
+            if(list.getCount() == 0){
+                throw std::runtime_error();
+            }
+            return list.getHead()->data;
+        }
+        
     };
     const T& back() const override{
-        return list.getTail()->data;
+        try{
+            if(list.getCount() == 0){
+                throw std::runtime_error();
+            }
+            return list.getTail()->data;
+        }
     };
 
      //Getters
@@ -53,11 +75,11 @@ public:
     };
 
     void printForward(){
-        list.printForward();
+        list.PrintForward();
     };
 
     void printReverse(){
-        list.printReverse();
+        list.PrintReverse();
     };
 };
 

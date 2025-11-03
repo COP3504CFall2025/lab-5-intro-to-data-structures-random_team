@@ -14,14 +14,14 @@ class LinkedList {
 public:
 
 	// Behaviors
-	void printForward() const{
+	void PrintForward() const{
 		Node* current = head;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
 			current = current->next;
 		}
 	};
-	void printReverse() const{
+	void PrintReverse() const{
 		Node* current = tail;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
@@ -106,7 +106,7 @@ public:
 		--count;
 		return true;
 	};
-	void clear(){
+	void Clear(){
 		
 		while(count > 0){
 			RemoveHead();
@@ -117,7 +117,7 @@ public:
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept{
 		if(this == &other) return *this;
-		clear();
+		Clear();
 
 		this->head = other.head;
 		this->tail = other.tail;
@@ -132,7 +132,7 @@ public:
 	};
 	LinkedList<T>& operator=(const LinkedList<T>& rhs){
 		if(this == &rhs) return *this;
-		clear();
+		Clear();
 
 		Node* current = rhs.head;
 		while(current != nullptr){
@@ -165,7 +165,7 @@ public:
 		other.count = 0;
 	};
 	~LinkedList(){
-		clear();
+		Clear();
 	};
 
 private:

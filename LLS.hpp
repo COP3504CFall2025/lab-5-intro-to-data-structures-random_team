@@ -12,7 +12,7 @@ private:
 public:
     // Constructor
     LLS(){
-        list.clear();
+        list.Clear();
     };
 
     // Insertion
@@ -38,10 +38,10 @@ public:
     };
 
     void printForward(){
-        list.printForward();
+        list.PrintForward();
     };
 
     void printReverse(){
-        list.printReverse();
+        list.PrintReverse();
     };
 };
