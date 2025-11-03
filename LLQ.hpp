@@ -38,11 +38,11 @@ public:
     };
 
     void printForward(){
-        list.PrintForward();
+        list.printForward();
     };
 
     void printReverse(){
-        list.PrintReverse();
+        list.printReverse();
     };
 
 

@@ -14,14 +14,14 @@ class LinkedList {
 public:
 
 	// Behaviors
-	void PrintForward() const{
+	void printForward() const{
 		Node* current = head;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
 			current = current->next;
 		}
 	};
-	void PrintReverse() const{
+	void printReverse() const{
 		Node* current = tail;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;

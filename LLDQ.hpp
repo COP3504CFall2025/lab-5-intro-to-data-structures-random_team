@@ -29,44 +29,44 @@ public:
 
     // Core Removal Operations
     T popFront() override{
-        try{
-            if(list.getCount() == 0){
-                throw std::runtime_error();
-            }
-            T front = list.getHead()->data;
-            list.RemoveHead();
-            return front;
+        
+        if(list.getCount() == 0){
+            throw std::runtime_error();
         }
+        T front = list.getHead()->data;
+        list.RemoveHead();
+        return front;
+        
     };
     T popBack() override{
-        try{
-            if(list.getCount() == 0){
+
+        if(list.getCount() == 0){
                 throw std::runtime_error();
-            }
-            T back = list.getTail()->data;
-            list.RemoveTail();
-            return back;
         }
+        T back = list.getTail()->data;
+        list.RemoveTail();
+        return back;
+        
         
     };
 
     // Element Accessors
     const T& front() const override{
-        try{
-            if(list.getCount() == 0){
-                throw std::runtime_error();
-            }
-            return list.getHead()->data;
+    
+        if(list.getCount() == 0){
+            throw std::runtime_error();
         }
+        return list.getHead()->data;
+        
         
     };
     const T& back() const override{
-        try{
-            if(list.getCount() == 0){
-                throw std::runtime_error();
-            }
-            return list.getTail()->data;
+
+        if(list.getCount() == 0){
+            throw std::runtime_error();
         }
+        return list.getTail()->data;
+        
     };
 
      //Getters
@@ -75,11 +75,11 @@ public:
     };
 
     void printForward(){
-        list.PrintForward();
+        list.printForward();
     };
 
     void printReverse(){
-        list.PrintReverse();
+        list.printReverse();
     };
 };
 
