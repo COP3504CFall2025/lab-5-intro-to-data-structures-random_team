@@ -31,6 +31,7 @@ int main() {
     test.printForward();
     test.pop();
     test.pop();
+    test.pop();
     test.push(5);
     std::cout<<std::endl;
     test.printForward();

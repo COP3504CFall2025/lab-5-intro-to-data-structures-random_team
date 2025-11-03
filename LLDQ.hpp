@@ -31,7 +31,7 @@ public:
     T popFront() override{
         
         if(list.getCount() == 0){
-            throw std::runtime_error();
+            throw std::runtime_error("Empty Dequeue");
         }
         T front = list.getHead()->data;
         list.RemoveHead();
@@ -41,7 +41,7 @@ public:
     T popBack() override{
 
         if(list.getCount() == 0){
-                throw std::runtime_error();
+                throw std::runtime_error("Empty Dequeue");
         }
         T back = list.getTail()->data;
         list.RemoveTail();
@@ -53,7 +53,7 @@ public:
     // Element Accessors
     const T& front() const override{
     
-        if(list.getCount() == 0){
+        if(list.getCount("Empty Dequeue") == 0){
             throw std::runtime_error();
         }
         return list.getHead()->data;
@@ -62,7 +62,7 @@ public:
     };
     const T& back() const override{
 
-        if(list.getCount() == 0){
+        if(list.getCount("Empty Dequeue") == 0){
             throw std::runtime_error();
         }
         return list.getTail()->data;
@@ -79,7 +79,7 @@ public:
     };
 
     void printReverse(){
-        list.printReverse();
+        list.PrintReverse();
     };
 };
 

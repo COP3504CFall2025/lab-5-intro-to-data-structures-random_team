@@ -22,6 +22,9 @@ public:
 
     // Deletion
     T pop() override{
+        if(list.getCount() == 0){
+                throw std::runtime_error("Empty Stack");
+        }
         T front = list.getHead()->data;
         list.RemoveHead();
         return front;
@@ -29,6 +32,9 @@ public:
 
     // Access
     T peek() const override{
+        if(list.getCount() == 0){
+            throw std::runtime_error("Empty Stack");
+        }
         return list.getHead()->data;
     };
 
@@ -42,6 +48,6 @@ public:
     };
 
     void printReverse(){
-        list.printReverse();
+        list.PrintReverse();
     };
 };

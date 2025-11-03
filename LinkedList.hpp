@@ -21,7 +21,7 @@ public:
 			current = current->next;
 		}
 	};
-	void printReverse() const{
+	void PrintReverse() const{
 		Node* current = tail;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
