@@ -19,32 +19,23 @@
 */
 
 int main() {
-
-    ABQ<int> test;
-    std::cout << "Size: "<< test.getSize() << std::endl;
-    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
-    test.enqueue(3);
-    std::cout << "Size: "<< test.getSize() << std::endl;
+    LLS<int> test;
+    test.push(2);
+    test.push(3);
+    test.push(4);
     test.printForward();
-    test.enqueue(4);
-    std::cout << "Next" << std::endl;
+    test.pop();
+    std::cout<<std::endl;
+    std::cout<<test.peek() << std::endl;
+    std::cout<<std::endl;
     test.printForward();
-    test.enqueue(5);
-    test.enqueue(7);
-    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
-    std::cout << "First: "<< test.peek() << std::endl;
-    test.enqueue(10);
-    std::cout << "Size: "<< test.getSize() << std::endl;
-    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
+    test.pop();
+    test.pop();
+    test.push(5);
+    std::cout<<std::endl;
     test.printForward();
-    test.printReverse();
-    std::cout << "First: "<< test.peek() << std::endl;
-    int deleted = test.dequeue();
-    std::cout << "Size: "<< test.getSize() << std::endl;
     
-    std::cout << "Popped: "<< deleted << std::endl;
-    std::cout << "First: "<< test.peek() << std::endl;
-    test.printForward();
+
     return 0;
 }
 

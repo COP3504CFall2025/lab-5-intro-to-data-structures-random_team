@@ -21,24 +21,32 @@ public:
     ABDQ(){
         capacity_ = 1;
         size_ = 0;
+        front_ = 0;
+        back_ = 0;
         data_ = new T[capacity_];
     };
     explicit ABDQ(std::size_t capacity){
         capacity_ = capacity;
         size_ = 0;
+        front_ = 0;
+        back_ = 0;
         data_ = new T[capacity_];
     };
     ABDQ(const ABDQ& other):
-        size_(other.size_), capacity_(other.capacity_), data_(new T[other.capacity_]){
+        size_(other.size_), capacity_(other.capacity_), data_(new T[other.capacity_]),
+        front_(other.front_), back_(other.back_){
         for(size_t i = 0; i<other.size_; ++i){
             data_[i] = other.data_[i];
         }
     };
     ABDQ(ABDQ&& other) noexcept:
-    data_(other.data_), capacity_(other.capacity_), size_(other.size_){
+    data_(other.data_), capacity_(other.capacity_), size_(other.size_),
+    front_(other.front_), back_(other.back_){
         other.data_ = nullptr;
         other.capacity_ = 0;
         other.size_ = 0;
+        other.back_ = -1;
+        other.front_ = -1;
     };
     ABDQ& operator=(const ABDQ& other){
         if(this == &other) return *this;
@@ -48,6 +56,8 @@ public:
         this->data_ = new_data_;
         this->capacity_ = other.capacity_;
         this->size_ = other.size_;
+        this->front_ = other.front_;
+        this->back_ = other.back_;
 
         for(size_t i = 0; i<other.size_; ++i){
             data_[i] = other.data_[i];
@@ -62,10 +72,14 @@ public:
         this->data_ = other.data_;
         this->capacity_ = other.capacity_;
         this->size_ = other.size_;
+        this->front_ = other.front_;
+        this->back_ = other.back_;
 
         other.data_ = nullptr;
         other.size_ = 0;
         other.capacity_ = 0;
+        other.back_ = -1;
+        other.front_ = -1;
 
         return *this;
     };
@@ -74,6 +88,8 @@ public:
         data_ = nullptr;
         capacity_ = 0;
         size_ = 0;
+        front_ = -1;
+        back_ = -1;
     };
 
     // Insertion
