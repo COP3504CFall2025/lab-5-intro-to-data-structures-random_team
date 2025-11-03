@@ -20,7 +20,31 @@
 
 int main() {
 
-
+    ABQ<int> test;
+    std::cout << "Size: "<< test.getSize() << std::endl;
+    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
+    test.enqueue(3);
+    std::cout << "Size: "<< test.getSize() << std::endl;
+    test.printForward();
+    test.enqueue(4);
+    std::cout << "Next" << std::endl;
+    test.printForward();
+    test.enqueue(5);
+    test.enqueue(7);
+    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
+    std::cout << "First: "<< test.peek() << std::endl;
+    test.enqueue(10);
+    std::cout << "Size: "<< test.getSize() << std::endl;
+    std::cout << "Capacity: "<< test.getMaxCapacity() << std::endl;
+    test.printForward();
+    test.printReverse();
+    std::cout << "First: "<< test.peek() << std::endl;
+    int deleted = test.dequeue();
+    std::cout << "Size: "<< test.getSize() << std::endl;
+    
+    std::cout << "Popped: "<< deleted << std::endl;
+    std::cout << "First: "<< test.peek() << std::endl;
+    test.printForward();
     return 0;
 }
 

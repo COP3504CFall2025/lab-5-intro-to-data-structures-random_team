@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <cstddef>
 #include <stdexcept>
 #include "Interfaces.hpp"
@@ -18,27 +18,154 @@ private:
 
 public:
     // Big 5
-    ABDQ();
-    explicit ABDQ(std::size_t capacity);
-    ABDQ(const ABDQ& other);
-    ABDQ(ABDQ&& other) noexcept;
-    ABDQ& operator=(const ABDQ& other);
-    ABDQ& operator=(ABDQ&& other) noexcept;
-    ~ABDQ() override;
+    ABDQ(){
+        capacity_ = 1;
+        size_ = 0;
+        data_ = new T[capacity_];
+    };
+    explicit ABDQ(std::size_t capacity){
+        capacity_ = capacity;
+        size_ = 0;
+        data_ = new T[capacity_];
+    };
+    ABDQ(const ABDQ& other):
+        size_(other.size_), capacity_(other.capacity_), data_(new T[other.capacity_]){
+        for(size_t i = 0; i<other.size_; ++i){
+            data_[i] = other.data_[i];
+        }
+    };
+    ABDQ(ABDQ&& other) noexcept:
+    data_(other.data_), capacity_(other.capacity_), size_(other.size_){
+        other.data_ = nullptr;
+        other.capacity_ = 0;
+        other.size_ = 0;
+    };
+    ABDQ& operator=(const ABDQ& other){
+        if(this == &other) return *this;
+        T* new_data_ = new T[other.capacity_];
+        delete[] this->data_;
+
+        this->data_ = new_data_;
+        this->capacity_ = other.capacity_;
+        this->size_ = other.size_;
+
+        for(size_t i = 0; i<other.size_; ++i){
+            data_[i] = other.data_[i];
+        }
+
+        return *this;
+    };
+    ABDQ& operator=(ABDQ&& other) noexcept{
+        if(this == &other) return *this;
+
+        delete[] this->data_;
+        this->data_ = other.data_;
+        this->capacity_ = other.capacity_;
+        this->size_ = other.size_;
+
+        other.data_ = nullptr;
+        other.size_ = 0;
+        other.capacity_ = 0;
+
+        return *this;
+    };
+    ~ABDQ() override{
+        delete[] data_;
+        data_ = nullptr;
+        capacity_ = 0;
+        size_ = 0;
+    };
 
     // Insertion
-    void pushFront(const T& item) override;
-    void pushBack(const T& item) override;
+    void pushFront(const T& item) override{
+        ensureCapacity();
+        T* expanded = new T[capacity_];
+        expanded[0] = item;
+        for(size_t i = 0; i<size_; ++i){
+            expanded[i+1] = data_[i];
+        }
+        delete[] data_;
+        data_ = expanded;
+        ++size_;
+    };
+    void pushBack(const T& item) override{
+        if(size_>=capacity_){
+            if(capacity_ == 0){
+                capacity_ = 1;
+            }else{
+            capacity_ *=2;
+            }
+            int* newData = new int[capacity_];
+            for(size_t i = 0; i<size_; ++i){
+                newData[i] = data_[i];
+            }
+            delete [] data_;
+            data_ = newData;
+        }
+        data_[size_] = item;
+        ++size_;
+    };
 
     // Deletion
-    T popFront() override;
-    T popBack() override;
+    T popFront() override{
+        T first = data_[0];
+        T* popped = new int[capacity_];
+        for(size_t i = 0; i<size_-1; ++i){
+            popped[i] = data_[i+1];
+        }
+        delete[] data_;
+        data_ = popped;
+        --size_;
+        return first;
+    };
+    T popBack() override{
+        T back = data_[size_-1];
+        T* popped = new int[capacity_ -1];
+        for(size_t i = 0; i<size_-1; ++i){
+            popped[i] = data_[i];
+        }
+        delete[] data_;
+        data_ = popped;
+        --size_;
+        return back;
+    };
 
+    void shrinkIfNeeded(){
+        if(size_*4>=capacity_){
+            capacity_/=2;
+        }
+    }
     // Access
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override{
+        return front_;
+    };
+    const T& back() const override{
+        return back_;
+    };
 
     // Getters
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override{
+        return size_;
+    };
+
+    void printForward(){
+        for(size_t i = 0; i<size_; ++i){
+            std::cout << data_[i] << std::endl;
+        }
+    };
+
+    void printReverse(){
+        for(int i = size_-1; i>=0; --i){
+            std::cout << data_[i] << std::endl;
+        }
+    };
+
+    void ensureCapacity(){
+        if(size_>= capacity_){
+            capacity_ *=SCALE_FACTOR;
+        }else if(capacity_ == 0){
+            capacity_ = 1;
+        }
+    };
 
 };
