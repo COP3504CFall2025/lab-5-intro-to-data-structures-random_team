@@ -104,10 +104,16 @@ public:
     };
 
     T peek() const override{
+        if(curr_size_ == 0){
+            throw std::runtime_error("Empty Stack");
+        }
         return array_[0];
     };
 
     T pop() override{
+        if(curr_size_ == 0){
+            throw std::runtime_error("Empty Stack");
+        }
         T first = array_[0];
         T* popped = new T[capacity_];
         for(size_t i = 0; i<curr_size_-1; ++i){

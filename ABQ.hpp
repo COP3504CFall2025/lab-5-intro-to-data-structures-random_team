@@ -29,7 +29,7 @@ public:
         array_ = new T[capacity_];
     };
     ABQ(const ABQ& other):
-        curr_size_(other.curr_size_), capacity_(other.capacity_), array_(new T[other.capacity_]){
+        capacity_(other.capacity_), curr_size_(other.curr_size_), array_(new T[other.capacity_]){
         for(size_t i = 0; i<other.curr_size_; ++i){
             array_[i] = other.array_[i];
         }
@@ -50,7 +50,7 @@ public:
         return *this;
     };
     ABQ(ABQ&& other) noexcept:
-    array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_){
+    capacity_(other.capacity_), curr_size_(other.curr_size_), array_(other.array_){
         other.array_ = nullptr;
         other.capacity_ = 0;
         other.curr_size_ = 0;
@@ -108,11 +108,17 @@ public:
 
     // Access
     T peek() const override{
+        if(curr_size_ == 0){
+            throw std::runtime_error("Empty Queue");
+        }
         return array_[0];
     };
 
     // Deletion
     T dequeue() override{
+        if(curr_size_ == 0){
+            throw std::runtime_error("Empty Queue");
+        }
         T first = array_[0];
         T* popped = new T[capacity_];
         for(size_t i = 0; i<curr_size_-1; ++i){

@@ -124,6 +124,9 @@ public:
 
     // Deletion
     T popFront() override{
+        if(size_ == 0){
+            throw std::runtime_error("Empty Dequeue");
+        }
         T first = data_[0];
         T* popped = new T[capacity_];
         for(size_t i = 0; i<size_-1; ++i){
@@ -135,6 +138,9 @@ public:
         return first;
     };
     T popBack() override{
+        if(size_ == 0){
+            throw std::runtime_error("Empty Dequeue");
+        }
         T back = data_[size_-1];
         T* popped = new T[capacity_ -1];
         for(size_t i = 0; i<size_-1; ++i){
@@ -153,9 +159,15 @@ public:
     }
     // Access
     const T& front() const override{
+        if(size_ == 0){
+            throw std::runtime_error("Empty Dequeue");
+        }
         return front_;
     };
     const T& back() const override{
+        if(size_ == 0){
+            throw std::runtime_error("Empty Dequeue");
+        }
         return back_;
     };
 

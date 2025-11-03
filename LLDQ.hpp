@@ -53,8 +53,8 @@ public:
     // Element Accessors
     const T& front() const override{
     
-        if(list.getCount("Empty Dequeue") == 0){
-            throw std::runtime_error();
+        if(list.getCount() == 0){
+            throw std::runtime_error("Empty Dequeue");
         }
         return list.getHead()->data;
         
@@ -62,8 +62,8 @@ public:
     };
     const T& back() const override{
 
-        if(list.getCount("Empty Dequeue") == 0){
-            throw std::runtime_error();
+        if(list.getCount() == 0){
+            throw std::runtime_error("Empty Dequeue");
         }
         return list.getTail()->data;
         
