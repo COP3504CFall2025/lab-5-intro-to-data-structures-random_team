@@ -19,15 +19,22 @@
 */
 
 int main() {
-    ABS<int> test(8);
-    test.push(1);
-    test.push(2);
-    test.pop();
-    
-    std::cout << test.getSize() << std::endl;
-    std::cout << test.getMaxCapacity() << std::endl;
+    ABDQ<int> test;
+    for (int i = 1; i < 10; i++)
+        if (i % 2 == 0)
+            test.pushBack(i);
+        else
+            test.pushFront(i);
 
+    std::cout << test.getMaxCapacity() << std::endl;
+    std::cout << test.getSize() << std::endl;
+    std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
+    test.popFront();
+    test.popBack();
     
+    std::cout << test.getMaxCapacity() << std::endl;
+    std::cout << test.getSize() << std::endl;
+    std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
 
     return 0;
 }

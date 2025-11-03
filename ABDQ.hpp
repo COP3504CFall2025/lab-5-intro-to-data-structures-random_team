@@ -95,30 +95,19 @@ public:
     // Insertion
     void pushFront(const T& item) override{
         ensureCapacity();
-        T* expanded = new T[capacity_];
-        expanded[0] = item;
-        for(size_t i = 0; i<size_; ++i){
-            expanded[i+1] = data_[i];
-        }
-        delete[] data_;
-        data_ = expanded;
+        size_t index =(front_-1+capacity_)%capacity_;
+        data_[index] = item;
+        front_ = index;
         ++size_;
     };
     void pushBack(const T& item) override{
-        if(size_>=capacity_){
-            if(capacity_ == 0){
-                capacity_ = 1;
-            }else{
-            capacity_ *=2;
-            }
-            T* newData = new T[capacity_];
-            for(size_t i = 0; i<size_; ++i){
-                newData[i] = data_[i];
-            }
-            delete [] data_;
-            data_ = newData;
+        ensureCapacity();
+        size_t index = (back_+1)%capacity_;
+        if(size_ == 0){
+            index = 0;
         }
-        data_[size_] = item;
+        data_[index] = item;
+        back_ = index;
         ++size_;
     };
 
@@ -127,34 +116,36 @@ public:
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
-        T first = data_[0];
-        T* popped = new T[capacity_];
-        for(size_t i = 0; i<size_-1; ++i){
-            popped[i] = data_[i+1];
-        }
-        delete[] data_;
-        data_ = popped;
+        T first = data_[front_];
+        
+        front_ = (front_+1)%capacity_;
         --size_;
+        shrinkIfNeeded();
         return first;
     };
     T popBack() override{
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
-        T back = data_[size_-1];
-        T* popped = new T[capacity_ -1];
-        for(size_t i = 0; i<size_-1; ++i){
-            popped[i] = data_[i];
-        }
-        delete[] data_;
-        data_ = popped;
+        T last = data_[back_];
+        back_ = (back_-1+capacity_)%capacity_;
         --size_;
-        return back;
+        shrinkIfNeeded();
+        return last;
     };
 
     void shrinkIfNeeded(){
-        if(size_*4<=capacity_){
+        if(capacity_ >4 && size_*4<=capacity_){
+            std::size_t oldCap = capacity_;
             capacity_/=2;
+            T* newData = new T[capacity_];
+            for(size_t i = 0; i<size_; ++i){
+                newData[i] = data_[(i+front_)%oldCap];
+            }
+            delete [] data_;
+            data_ = newData;
+            front_ = 0;
+            back_ = size_-1;
         }
     }
     // Access
@@ -162,13 +153,13 @@ public:
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
-        return front_;
+        return data_[front_];
     };
     const T& back() const override{
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
-        return back_;
+        return data_[back_];
     };
 
     // Getters
@@ -176,24 +167,37 @@ public:
         return size_;
     };
 
+        // Get the max size of the ABS
+    [[nodiscard]] size_t getMaxCapacity() const noexcept{
+        return capacity_;
+    };
+    
     void printForward(){
         for(size_t i = 0; i<size_; ++i){
-            std::cout << data_[i] << std::endl;
+            std::cout << data_[(front_+i)%capacity_] << std::endl;
         }
     };
 
     void printReverse(){
-        for(int i = size_-1; i>=0; --i){
-            std::cout << data_[i] << std::endl;
+        for(size_t i = 0; i<size_; ++i){
+            std::cout << data_[(back_-i+capacity_)%capacity_] << std::endl;
         }
     };
 
     void ensureCapacity(){
         if(size_>= capacity_){
+            std::size_t oldCap = capacity_;
             capacity_ *=SCALE_FACTOR;
-        }else if(capacity_ == 0){
-            capacity_ = 1;
+            T* newData = new T[capacity_];
+            for(size_t i = 0; i<oldCap; ++i){
+                newData[i] = data_[(i+front_)%oldCap];
+            }
+            delete [] data_;
+            data_ = newData;
+            front_ = 0;
+            back_ = oldCap-1;
         }
+
     };
 
 };
