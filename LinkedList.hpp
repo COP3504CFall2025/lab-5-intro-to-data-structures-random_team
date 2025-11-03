@@ -14,14 +14,14 @@ class LinkedList {
 public:
 
 	// Behaviors
-	void printForward() const{
+	void PrintForward() const{
 		Node* current = head;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
 			current = current->next;
 		}
 	};
-	void printReverse() const{
+	void PrintReverse() const{
 		Node* current = tail;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
@@ -33,7 +33,7 @@ public:
 	[[nodiscard]] unsigned int getCount() const{
 		return count;
 	};
-	
+
 	Node* getHead(){
 		return head;
 	};
@@ -48,7 +48,7 @@ public:
 	};
 
 	// Insertion
-	void addHead(const T& data){
+	void AddHead(const T& data){
 		Node* h = new Node{data, nullptr, head};
 		if(head != nullptr){
 			head->prev = h;
@@ -58,7 +58,7 @@ public:
 		head= h;
 		++count;
 	};
-	void addTail(const T& data){
+	void AddTail(const T& data){
 		Node* t = new Node{data, tail, nullptr};
 		if(tail != nullptr){
 			tail->next = t;
@@ -136,7 +136,7 @@ public:
 
 		Node* current = rhs.head;
 		while(current != nullptr){
-			addTail(current->data);
+			AddTail(current->data);
 			current = current->next;
 		}
 
@@ -153,7 +153,7 @@ public:
 		}
 		Node* current = list.head;
 		while(current != nullptr){
-			addTail(current->data);
+			AddTail(current->data);
 			current = current->next;
 		}
 

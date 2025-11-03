@@ -21,10 +21,10 @@ public:
 
     // Core Insertion Operations
     void pushFront(const T& item) override{
-        list.addHead(item);
+        list.AddHead(item);
     };
     void pushBack(const T& item) override{
-        list.addTail(item);
+        list.AddTail(item);
     };
 
     // Core Removal Operations
@@ -52,12 +52,12 @@ public:
         return static_cast<std::size_t>(list.getCount());
     };
 
-    void printForward(){
-        list.printForward();
+    void PrintForward(){
+        list.PrintForward();
     };
 
-    void printReverse(){
-        list.printReverse();
+    void PrintReverse(){
+        list.PrintReverse();
     };
 };
 

@@ -17,7 +17,7 @@ public:
 
     // Insertion
     void push(const T& item) override{
-        list.addHead(item);
+        list.AddHead(item);
     };
 
     // Deletion
@@ -37,11 +37,11 @@ public:
         return static_cast<std::size_t>(list.getCount());
     };
 
-    void printForward(){
-        list.printForward();
+    void PrintForward(){
+        list.PrintForward();
     };
 
-    void printReverse(){
-        list.printReverse();
+    void PrintReverse(){
+        list.PrintReverse();
     };
 };
