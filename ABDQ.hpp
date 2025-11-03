@@ -19,7 +19,7 @@ private:
 public:
     // Big 5
     ABDQ(){
-        capacity_ = 1;
+        capacity_ = 4;
         size_ = 0;
         front_ = 0;
         back_ = 0;
@@ -111,7 +111,7 @@ public:
             }else{
             capacity_ *=2;
             }
-            int* newData = new int[capacity_];
+            T* newData = new T[capacity_];
             for(size_t i = 0; i<size_; ++i){
                 newData[i] = data_[i];
             }
@@ -125,7 +125,7 @@ public:
     // Deletion
     T popFront() override{
         T first = data_[0];
-        T* popped = new int[capacity_];
+        T* popped = new T[capacity_];
         for(size_t i = 0; i<size_-1; ++i){
             popped[i] = data_[i+1];
         }
@@ -136,7 +136,7 @@ public:
     };
     T popBack() override{
         T back = data_[size_-1];
-        T* popped = new int[capacity_ -1];
+        T* popped = new T[capacity_ -1];
         for(size_t i = 0; i<size_-1; ++i){
             popped[i] = data_[i];
         }

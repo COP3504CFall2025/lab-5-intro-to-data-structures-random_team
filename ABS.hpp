@@ -109,7 +109,7 @@ public:
 
     T pop() override{
         T first = array_[0];
-        T* popped = new int[capacity_];
+        T* popped = new T[capacity_];
         for(size_t i = 0; i<curr_size_-1; ++i){
             popped[i] = array_[i+1];
         }

@@ -23,7 +23,7 @@ public:
     // Deletion
     T pop() override{
         T front = list.getHead()->data;
-        list.removeHead();
+        list.RemoveHead();
         return front;
     };
 
@@ -37,11 +37,11 @@ public:
         return static_cast<std::size_t>(list.getCount());
     };
 
-    void PrintForward(){
-        list.PrintForward();
+    void printForward(){
+        list.printForward();
     };
 
-    void PrintReverse(){
-        list.PrintReverse();
+    void printReverse(){
+        list.printReverse();
     };
 };

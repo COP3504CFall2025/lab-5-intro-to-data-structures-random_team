@@ -30,12 +30,12 @@ public:
     // Core Removal Operations
     T popFront() override{
         T front = list.getHead()->data;
-        list.removeHead();
+        list.RemoveHead();
         return front;
     };
     T popBack() override{
         T back = list.getTail()->data;
-        list.removeTail();
+        list.RemoveTail();
         return back;
     };
 
@@ -52,12 +52,12 @@ public:
         return static_cast<std::size_t>(list.getCount());
     };
 
-    void PrintForward(){
-        list.PrintForward();
+    void printForward(){
+        list.printForward();
     };
 
-    void PrintReverse(){
-        list.PrintReverse();
+    void printReverse(){
+        list.printReverse();
     };
 };
 

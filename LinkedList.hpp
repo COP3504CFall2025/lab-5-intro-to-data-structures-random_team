@@ -14,14 +14,14 @@ class LinkedList {
 public:
 
 	// Behaviors
-	void PrintForward() const{
+	void printForward() const{
 		Node* current = head;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
 			current = current->next;
 		}
 	};
-	void PrintReverse() const{
+	void printReverse() const{
 		Node* current = tail;
 		while(current != nullptr){
 			std::cout<< current->data << std::endl;
@@ -70,7 +70,7 @@ public:
 	};
 
 	// Removal
-	bool removeHead(){
+	bool RemoveHead(){
 		if(head == nullptr){
 			return false;
 		}
@@ -88,7 +88,7 @@ public:
 		--count;
 		return true;
 	};
-	bool removeTail(){
+	bool RemoveTail(){
 		if(tail == nullptr){
 			return false;
 		}
@@ -109,7 +109,7 @@ public:
 	void clear(){
 		
 		while(count > 0){
-			removeHead();
+			RemoveHead();
 		}
 		count = 0;
 	};

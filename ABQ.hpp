@@ -95,7 +95,7 @@ public:
         }else{
         capacity_ *=2;
         }
-        int* newData = new int[capacity_];
+        T* newData = new T[capacity_];
         for(size_t i = 0; i<curr_size_; ++i){
             newData[i] = array_[i];
         }
@@ -114,7 +114,7 @@ public:
     // Deletion
     T dequeue() override{
         T first = array_[0];
-        T* popped = new int[capacity_];
+        T* popped = new T[capacity_];
         for(size_t i = 0; i<curr_size_-1; ++i){
             popped[i] = array_[i+1];
         }
