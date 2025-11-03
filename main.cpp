@@ -25,17 +25,35 @@ int main() {
             test.pushBack(i);
         else
             test.pushFront(i);
-
-    std::cout << test.getMaxCapacity() << std::endl;
-    std::cout << test.getSize() << std::endl;
+    test.printForward();
+    std::cout << "Capacity: " << test.getMaxCapacity() << std::endl;
+    std::cout << "Size:" << test.getSize() << std::endl;
     std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
     test.popFront();
     test.popBack();
+    test.printForward();
     
-    std::cout << test.getMaxCapacity() << std::endl;
-    std::cout << test.getSize() << std::endl;
+    std::cout << "Capacity: " << test.getMaxCapacity() << std::endl;
+    std::cout << "Size:" << test.getSize() << std::endl;
+
     std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
 
+    test.popFront();
+    test.popFront();
+    test.popFront();
+    test.popFront();
+
+    test.printForward();
+    std::cout << "Capacity: " << test.getMaxCapacity() << std::endl;
+    std::cout << "Size:" << test.getSize() << std::endl;
+    std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
+    
+    test.popFront();
+    test.popBack();
+    test.printForward();
+    std::cout << "Capacity: " << test.getMaxCapacity() << std::endl;
+    std::cout << "Size:" << test.getSize() << std::endl;
+    std::cout << "Front: " << test.front() << " Back: " << test.back()  << std::endl;
     return 0;
 }
 

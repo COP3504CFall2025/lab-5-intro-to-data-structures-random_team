@@ -102,10 +102,7 @@ public:
     };
     void pushBack(const T& item) override{
         ensureCapacity();
-        size_t index = (back_+1)%capacity_;
-        if(size_ == 0){
-            index = 0;
-        }
+        size_t index = (front_+size_)%capacity_;
         data_[index] = item;
         back_ = index;
         ++size_;
@@ -153,12 +150,14 @@ public:
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
+        
         return data_[front_];
     };
     const T& back() const override{
         if(size_ == 0){
             throw std::runtime_error("Empty Dequeue");
         }
+        
         return data_[back_];
     };
 
