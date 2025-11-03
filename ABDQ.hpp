@@ -153,7 +153,7 @@ public:
     };
 
     void shrinkIfNeeded(){
-        if(size_*4>=capacity_){
+        if(size_*4<=capacity_){
             capacity_/=2;
         }
     }

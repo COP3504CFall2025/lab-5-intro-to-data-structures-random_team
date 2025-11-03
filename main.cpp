@@ -19,13 +19,14 @@
 */
 
 int main() {
-    ABS<int> test;
+    ABS<int> test(8);
     test.push(1);
     test.push(2);
     test.pop();
-    test.pop();
-    test.pop();
     
+    std::cout << test.getSize() << std::endl;
+    std::cout << test.getMaxCapacity() << std::endl;
+
     
 
     return 0;
